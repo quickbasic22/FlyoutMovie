@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlyoutMovie.Views.ItemDetailPage"
+             Title="{Binding Title}">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Id:" FontSize="Medium" />
+        <Label Text="{Binding Id}" FontSize="Small"/>
+        <Label Text="Title:" FontSize="Medium" />
+        <Label Text="{Binding MovieTitle}" FontSize="Small"/>
+        <Label Text="Released:" FontSize="Medium" />
+        <DatePicker Date="{Binding Released}" FontSize="Small"/>
+        <Label Text="MediaFormat:" FontSize="Medium" />
+        <Label Text="{Binding MediaFormat}" FontSize="Small"/>
+    </StackLayout>
+    
+</ContentPage>

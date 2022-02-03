@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlyoutMovie.Android", "FlyoutMovie\FlyoutMovie.Android\FlyoutMovie.Android.csproj", "{B6A1793A-EBB7-4AE8-84FF-35B0E8EF335F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlyoutMovie", "FlyoutMovie\FlyoutMovie\FlyoutMovie.csproj", "{AA94332B-EDF7-4E4A-B5E7-F77E5AA5D8A4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B6A1793A-EBB7-4AE8-84FF-35B0E8EF335F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A1793A-EBB7-4AE8-84FF-35B0E8EF335F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A1793A-EBB7-4AE8-84FF-35B0E8EF335F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B6A1793A-EBB7-4AE8-84FF-35B0E8EF335F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A1793A-EBB7-4AE8-84FF-35B0E8EF335F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A1793A-EBB7-4AE8-84FF-35B0E8EF335F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AA94332B-EDF7-4E4A-B5E7-F77E5AA5D8A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA94332B-EDF7-4E4A-B5E7-F77E5AA5D8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA94332B-EDF7-4E4A-B5E7-F77E5AA5D8A4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AA94332B-EDF7-4E4A-B5E7-F77E5AA5D8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA94332B-EDF7-4E4A-B5E7-F77E5AA5D8A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA94332B-EDF7-4E4A-B5E7-F77E5AA5D8A4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C0F1AFBB-1629-4033-9FDA-E415D51EA9AB}
+	EndGlobalSection
+EndGlobal
