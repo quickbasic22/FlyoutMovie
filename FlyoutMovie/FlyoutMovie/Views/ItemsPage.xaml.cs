@@ -28,5 +28,16 @@ namespace FlyoutMovie.Views
             base.OnAppearing();
             _viewModel.OnAppearing();
         }
+
+        protected async void SwipeDelete_Invoked(object sender, EventArgs e)
+        {
+            var swipe = sender as SwipeItem;
+            var item = swipe.BindingContext as Item;      
+            await _viewModel.DataStore.DeleteItemAsync(item.Id);
+            _viewModel.Items.Remove(item);
+            await _viewModel.ExecuteLoadItemsCommand();
+            await Shell.Current.GoToAsync("..");
+
+        }
     }
 }

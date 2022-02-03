@@ -17,7 +17,7 @@ namespace FlyoutMovie.ViewModels
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
-        public ICommand DeleteCommand { get; set; }
+        
 
         public ItemsViewModel()
         {
@@ -26,19 +26,10 @@ namespace FlyoutMovie.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<Item>(OnItemSelected);
             AddItemCommand = new Command(OnAddItem);
-            DeleteCommand = new Command(OnDelete);
         }
 
-        private async void OnDelete(object obj)
-        {
-            var item = obj as Item;
-            await DataStore.DeleteItemAsync(item.Id);
-            Items.Remove(item);
-            await ExecuteLoadItemsCommand();
-            await Shell.Current.GoToAsync(nameof(ItemsPage));
-        }
-
-        async Task ExecuteLoadItemsCommand()
+        
+        public async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
