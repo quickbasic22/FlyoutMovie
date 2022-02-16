@@ -29,7 +29,7 @@
                                 </SwipeItem>
                             </SwipeItems>
                         </SwipeView.RightItems>
-                        <StackLayout Padding="10" x:DataType="model:Item">
+                        <StackLayout Padding="10" x:DataType="model:Movie">
                             <Label Text="{Binding Id}" 
                             LineBreakMode="NoWrap" 
                             Style="{DynamicResource ListItemTextStyle}" 

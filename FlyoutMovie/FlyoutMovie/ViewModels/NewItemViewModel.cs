@@ -63,7 +63,7 @@ namespace FlyoutMovie.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
+            Movie newItem = new Movie()
             {
                 Id = 7,
                 Title = MovieTitle,

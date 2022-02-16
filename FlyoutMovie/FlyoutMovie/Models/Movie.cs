@@ -1,9 +1,11 @@
-﻿using System;
+﻿using SQLite;
+using System;
 
 namespace FlyoutMovie.Models
 {
-    public class Item
+    public class Movie
     {
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Title { get; set; }
         public DateTime Released { get; set; }

@@ -32,7 +32,7 @@ namespace FlyoutMovie.Views
         protected async void SwipeDelete_Invoked(object sender, EventArgs e)
         {
             var swipe = sender as SwipeItem;
-            var item = swipe.BindingContext as Item;      
+            var item = swipe.BindingContext as Movie;      
             await _viewModel.DataStore.DeleteItemAsync(item.Id);
             _viewModel.Items.Remove(item);
             await _viewModel.ExecuteLoadItemsCommand();

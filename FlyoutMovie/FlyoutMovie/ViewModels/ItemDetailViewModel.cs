@@ -55,15 +55,15 @@ namespace FlyoutMovie.ViewModels
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                MovieTitle = item.Title;
-                Released = item.Released;
-                MediaFormat = item.MediaFormat;
+                var Movie = await DataStore.GetItemAsync(itemId);
+                Id = Movie.Id;
+                MovieTitle = Movie.Title;
+                Released = Movie.Released;
+                MediaFormat = Movie.MediaFormat;
             }
             catch (Exception)
             {
-                Debug.WriteLine("Failed to Load Item");
+                Debug.WriteLine("Failed to Load Movie");
             }
         }
     }
