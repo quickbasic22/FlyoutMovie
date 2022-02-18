@@ -1,6 +1,7 @@
 ﻿using FlyoutMovie.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,53 +9,48 @@ namespace FlyoutMovie.Services
 {
     public class MockDataStore : IDataStore<Movie>
     {
-        readonly List<Movie> items;
-
-        public MockDataStore()
+        readonly SQLite.SQLiteAsyncConnection database;
+        
+        public MockDataStore(string dbPath)
         {
-            items = new List<Movie>()
+            database = new SQLite.SQLiteAsyncConnection(dbPath);
+            try
             {
-                new Movie { Id = 1, Title = "Pain and Gain", Released=DateTime.Now.AddYears(-3).AddMonths(-9), MediaFormat = "DVD" },
-                new Movie { Id = 2, Title = "Jaws", Released=DateTime.Now.AddYears(-10).AddMonths(-2), MediaFormat = "Blueray" },
-                new Movie { Id = 3, Title = "Friday The 13th", Released=DateTime.Now.AddYears(-8).AddMonths(-1), MediaFormat = "HD" },
-                new Movie { Id = 4, Title = "Mexico", Released=DateTime.Now.AddYears(-9).AddMonths(-9), MediaFormat = "UHD" },
-                new Movie { Id = 5, Title = "Go Day", Released=DateTime.Now.AddYears(-11).AddMonths(-9), MediaFormat = "IMAX" },
-                new Movie { Id = 6, Title = "The Sixth Sense", Released=DateTime.Now.AddYears(-4).AddMonths(-3), MediaFormat = "DVD" }
-            };
+                database.CreateTableAsync<Movie>().Wait();
+                database.CreateTableAsync<MoviesDetails>().Wait();
+                database.CreateTableAsync<Actors>().Wait();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            
         }
 
-        public async Task<bool> AddItemAsync(Movie item)
+        public async Task<int> InsertItemAsync(Movie movie)
         {
-            items.Add(item);
-
-            return await Task.FromResult(true);
+            return await database.InsertAsync(movie);
+        }
+               
+        public async Task<int> UpdateItemAsync(Movie movie)
+        {
+            return await database.UpdateAsync(movie);
         }
 
-        public async Task<bool> UpdateItemAsync(Movie item)
+        public async Task<int> DeleteItemAsync(Movie movie)
         {
-            var oldItem = items.Where((Movie arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
-
-            return await Task.FromResult(true);
-        }
-
-        public async Task<bool> DeleteItemAsync(int id)
-        {
-            var oldItem = items.Where((Movie arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
-
-            return await Task.FromResult(true);
+            return await database.DeleteAsync(movie);
         }
 
         public async Task<Movie> GetItemAsync(int id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await database.Table<Movie>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<Movie>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<List<Movie>> GetItemsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(items);
+
+            return await database.Table<Movie>().ToListAsync();
         }
     }
 }

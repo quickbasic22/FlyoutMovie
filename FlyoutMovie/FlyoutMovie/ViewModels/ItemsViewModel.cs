@@ -12,8 +12,6 @@ namespace FlyoutMovie.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         private Movie _selectedItem;
-
-        public ObservableCollection<Movie> Items { get; }
         public Command LoadItemsCommand { get; }
         public Command AddItemCommand { get; }
         public Command<Movie> ItemTapped { get; }

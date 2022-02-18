@@ -3,16 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FlyoutMovie.Views.ItemDetailPage"
              Title="{Binding Title}">
-
+   
     <StackLayout Spacing="20" Padding="15">
         <Label Text="Id:" FontSize="Medium" />
-        <Label Text="{Binding Id}" FontSize="Small"/>
+        <Entry Text="{Binding Id}" FontSize="Medium"/>
         <Label Text="Title:" FontSize="Medium" />
-        <Label Text="{Binding MovieTitle}" FontSize="Small"/>
+        <Entry Text="{Binding MovieTitle}" FontSize="Medium"/>
         <Label Text="Released:" FontSize="Medium" />
-        <DatePicker Date="{Binding Released}" FontSize="Small"/>
+        <DatePicker Date="{Binding Released}" FontSize="Medium"/>
         <Label Text="MediaFormat:" FontSize="Medium" />
-        <Label Text="{Binding MediaFormat}" FontSize="Small"/>
+        <Entry Text="{Binding MediaFormat}" FontSize="Medium"/>
+        <StackLayout>
+            <Button Text="Save" Command="{Binding SaveCommand}" />
+        </StackLayout>
     </StackLayout>
     
 </ContentPage>

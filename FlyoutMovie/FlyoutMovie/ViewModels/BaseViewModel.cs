@@ -2,7 +2,9 @@
 using FlyoutMovie.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
@@ -10,7 +12,8 @@ namespace FlyoutMovie.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Movie> DataStore => DependencyService.Get<IDataStore<Movie>>();
+        public ObservableCollection<Movie> Items { get; set; }
+        public MockDataStore DataStore = new MockDataStore(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Movies.db3"));
 
         bool isBusy = false;
         public bool IsBusy

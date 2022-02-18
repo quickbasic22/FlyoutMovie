@@ -9,7 +9,7 @@ namespace FlyoutMovie.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
-        private int id = 7;
+        private int id = Movie.lastId;
         private string title = "Movie";
         private DateTime released = DateTime.Now;
         private string mediaformat = "DVD";
@@ -63,15 +63,16 @@ namespace FlyoutMovie.ViewModels
 
         private async void OnSave()
         {
+            var nextId = Movie.lastId;
             Movie newItem = new Movie()
             {
-                Id = 7,
+                Id = nextId,
                 Title = MovieTitle,
                 Released = Released,
                 MediaFormat = MediaFormat
             };
 
-            await DataStore.AddItemAsync(newItem);
+            await DataStore.InsertItemAsync(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

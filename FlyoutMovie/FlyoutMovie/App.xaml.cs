@@ -12,24 +12,26 @@ namespace FlyoutMovie
 {
     public partial class App : Application
     {
+        static MockDataStore database;
+
+        public static MockDataStore DataBase
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new MockDataStore(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments), "Movies.db3"));
+
+                }
+                return database;
+
+
+            }
+        }
 
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<MockDataStore>();
-            
-            try
-            {
-                var mydocuments = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments);
-                mydocuments += @"Assets\MoviesDB.db";
-                File.Copy("MoviesDB.db", mydocuments);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Error Copying File to Android {ex.Message}");
-
-            }
-            
             MainPage = new AppShell();
         }
 

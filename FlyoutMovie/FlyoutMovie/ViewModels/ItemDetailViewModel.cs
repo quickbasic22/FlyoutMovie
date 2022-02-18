@@ -2,6 +2,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace FlyoutMovie.ViewModels
@@ -14,7 +15,36 @@ namespace FlyoutMovie.ViewModels
         private string title;
         private DateTime released;
         private string mediaformat;
-        public int Id 
+        private Movie movie;
+
+        public Command SaveCommand { get; set; }
+        
+
+        public ItemDetailViewModel()
+        {
+            SaveCommand = new Command(OnSave);
+            this.PropertyChanged +=
+                (_, __) => SaveCommand.ChangeCanExecute();
+        }
+
+        private async void OnSave()
+        {
+            Movie movieEditable = new Movie();
+            movieEditable.Id = this.Id;
+            movieEditable.Title = this.title;
+            movieEditable.Released = this.released;
+            movieEditable.MediaFormat = this.mediaformat;
+            await DataStore.UpdateItemAsync(movieEditable);
+            await Shell.Current.GoToAsync("..");
+        }
+
+        public Movie MovieEdit
+        {
+            get => movie;
+            set => SetProperty(ref movie, value);
+        }
+                
+        public int Id
         {
             get => id;
             set => SetProperty(ref id, value);
@@ -55,11 +85,11 @@ namespace FlyoutMovie.ViewModels
         {
             try
             {
-                var Movie = await DataStore.GetItemAsync(itemId);
-                Id = Movie.Id;
-                MovieTitle = Movie.Title;
-                Released = Movie.Released;
-                MediaFormat = Movie.MediaFormat;
+                MovieEdit = await DataStore.GetItemAsync(ItemId);
+                Id = MovieEdit.Id;
+                MovieTitle = MovieEdit.Title;
+                Released = MovieEdit.Released;
+                MediaFormat = MovieEdit.MediaFormat;
             }
             catch (Exception)
             {
