@@ -10,6 +10,14 @@ namespace FlyoutMovie.Views
         {
             InitializeComponent();
             BindingContext = new ItemDetailViewModel();
+            TitleOfMovie.TextChanged += TitleOfMovie_TextChanged;
+        }
+
+        private void TitleOfMovie_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Entry entry = sender as Entry;
+            entry.Keyboard = Keyboard.Text;
+            
         }
     }
 }
