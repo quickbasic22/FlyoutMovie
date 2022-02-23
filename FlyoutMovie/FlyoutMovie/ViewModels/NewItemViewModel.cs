@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using System.Linq;
 using System.Diagnostics;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace FlyoutMovie.ViewModels
 {
@@ -59,9 +60,9 @@ namespace FlyoutMovie.ViewModels
 
         private async void OnSave()
         {
-            var list = DataStore.Movies.ToList().Last();
-            var lastId = list.Id++;
-            lastId = lastId++;
+            List<Movie> list = DataStore.Movies.ToList();
+            var lastId = list.Last().Id;
+            lastId = lastId + 1;
             Movie newItem = new Movie()
             {
                 Id = lastId,
