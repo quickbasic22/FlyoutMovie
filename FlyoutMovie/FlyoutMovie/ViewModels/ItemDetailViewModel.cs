@@ -33,7 +33,6 @@ namespace FlyoutMovie.ViewModels
             MovieEdit.Year = Year;
             DataStore.Update<Movie>(MovieEdit);
             await DataStore.SaveChangesAsync();
-            Items.Remove(MovieEdit);
             ExecuteLoadItemsCommand();
             await Shell.Current.GoToAsync("..");
         }
