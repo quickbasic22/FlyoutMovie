@@ -20,6 +20,7 @@ namespace FlyoutMovie.ViewModels
 
         public ItemDetailViewModel()
         {
+            Items = new System.Collections.ObjectModel.ObservableCollection<Movie>();
             SaveCommand = new Command(OnSave);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
@@ -28,7 +29,7 @@ namespace FlyoutMovie.ViewModels
         private async void OnSave()
         {
             MovieEdit.Id = Id;
-            MovieEdit.Title = Title;
+            MovieEdit.Title = MovieTitle;
             MovieEdit.Imdb_Id = Imdb_Id;
             MovieEdit.Year = Year;
             DataStore.Update<Movie>(MovieEdit);
