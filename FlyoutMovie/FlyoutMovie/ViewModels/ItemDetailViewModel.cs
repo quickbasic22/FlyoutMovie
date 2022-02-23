@@ -27,12 +27,11 @@ namespace FlyoutMovie.ViewModels
 
         private async void OnSave()
         {
-            Movie movieEditable = new Movie();
-            movieEditable.Id = Id;
-            movieEditable.Title = Title;
-            movieEditable.Imdb_Id = Imdb_Id;
-            movieEditable.Year = Year;
-            DataStore.Update(movieEditable);
+            MovieEdit.Id = Id;
+            MovieEdit.Title = Title;
+            MovieEdit.Imdb_Id = Imdb_Id;
+            MovieEdit.Year = Year;
+            DataStore.Update<Movie>(MovieEdit);
             await DataStore.SaveChangesAsync();
             await Shell.Current.GoToAsync("..");
         }

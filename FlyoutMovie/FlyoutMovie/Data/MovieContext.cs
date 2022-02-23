@@ -22,6 +22,7 @@ namespace FlyoutMovie.Data
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlite(@"Data Source=" + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "MovieDb.db3"));
+            optionsBuilder.EnableSensitiveDataLogging(true);
         }
     }
 }
