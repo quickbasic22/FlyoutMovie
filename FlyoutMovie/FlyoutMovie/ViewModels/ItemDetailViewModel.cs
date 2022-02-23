@@ -20,7 +20,6 @@ namespace FlyoutMovie.ViewModels
 
         public ItemDetailViewModel()
         {
-            Items = new System.Collections.ObjectModel.ObservableCollection<Movie>();
             SaveCommand = new Command(OnSave);
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();

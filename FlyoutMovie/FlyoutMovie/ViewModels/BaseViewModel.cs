@@ -14,6 +14,11 @@ namespace FlyoutMovie.ViewModels
         public MovieContext DataStore = new MovieContext();
 
         bool isBusy = false;
+
+        public BaseViewModel()
+        {
+            Items = new ObservableCollection<Movie>();
+        }
         public bool IsBusy
         {
             get { return isBusy; }
