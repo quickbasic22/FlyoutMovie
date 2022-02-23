@@ -1,5 +1,7 @@
 ﻿using FlyoutMovie.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.IO;
 
 namespace FlyoutMovie.Data
 {
@@ -19,7 +21,7 @@ namespace FlyoutMovie.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlite(@"Data Source=C:\Users\quick\source\repos\FlyoutMovie\DummyProject\Data\MovieDb.db3");
+            optionsBuilder.UseSqlite(@"Data Source=" + Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "MovieDb.db3"));
         }
     }
 }
