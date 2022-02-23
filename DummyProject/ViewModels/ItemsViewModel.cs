@@ -21,20 +21,20 @@ namespace FlyoutMovie.ViewModels
         {
             Title = "Browse";
             Items = new ObservableCollection<Movie>();
-            LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<Movie>(OnItemSelected);
             AddItemCommand = new Command(OnAddItem);
         }
 
         
-        public void ExecuteLoadItemsCommand()
+        public async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
             try
             {
                 Items.Clear();
-                var items = DataStore.Movies;
+                var items = DataStore.Movies.ToList();
                 foreach (var movie in items)
                 {
                     Items.Add(movie);

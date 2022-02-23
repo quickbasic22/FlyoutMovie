@@ -11,7 +11,7 @@ namespace FlyoutMovie.ViewModels
     {
         private int id = 1;
         private string title = "Movie";
-        private string imdb_id = "id2ds3se";
+        private string imdb_id = "ds32dw32";
         private int year = 2022;
 
         public NewItemViewModel()
@@ -61,7 +61,7 @@ namespace FlyoutMovie.ViewModels
             await Shell.Current.GoToAsync("..");
         }
 
-        private async void OnSave()
+        private void OnSave()
         {
             Movie newItem = new Movie()
             {
@@ -74,7 +74,7 @@ namespace FlyoutMovie.ViewModels
             DataStore.SaveChanges();
 
             // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+            Shell.Current.GoToAsync("..");
         }
     }
 }

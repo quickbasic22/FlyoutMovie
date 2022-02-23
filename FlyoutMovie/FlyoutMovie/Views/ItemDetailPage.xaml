@@ -9,10 +9,10 @@
         <Entry Text="{Binding Id}" FontSize="Medium"/>
         <Label Text="Title:" FontSize="Medium" />
         <Entry x:Name="TitleOfMovie" Text="{Binding MovieTitle}" FontSize="Medium"/>
-        <Label Text="Released:" FontSize="Medium" />
-        <DatePicker Date="{Binding Released}" FontSize="Medium"/>
-        <Label Text="MediaFormat:" FontSize="Medium" />
-        <Entry Text="{Binding MediaFormat}" FontSize="Medium"/>
+        <Label Text="Imdb_Id:" FontSize="Medium" />
+        <DatePicker Date="{Binding Imdb_Id}" FontSize="Medium"/>
+        <Label Text="Year:" FontSize="Medium" />
+        <Entry Text="{Binding Year, StringFormat='{0:N0}'}" FontSize="Medium"/>
         <StackLayout>
             <Button Text="Save" Command="{Binding SaveCommand}" />
         </StackLayout>

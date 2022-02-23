@@ -27,16 +27,16 @@ namespace FlyoutMovie.ViewModels
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
 
-        private void OnSave()
+        private async void OnSave()
         {
             Movie movieEditable = new Movie();
             movieEditable.Id = this.Id;
             movieEditable.Title = this.title;
-            movieEditable.Imdb_Id = this.imdb_id;
+            movieEditable.Imdb_Id = this.Imdb_Id;
             movieEditable.Year = this.Year;
             DataStore.Update(movieEditable);
             DataStore.SaveChanges();
-            Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..");
         }
 
         public Movie MovieEdit
@@ -57,7 +57,7 @@ namespace FlyoutMovie.ViewModels
             set => SetProperty(ref title, value);
         }
 
-        public string Imdb_Id
+        public string  Imdb_Id
         {
             get => imdb_id;
             set => SetProperty(ref imdb_id, value);
