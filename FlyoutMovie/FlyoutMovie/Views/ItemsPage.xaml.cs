@@ -22,15 +22,15 @@ namespace FlyoutMovie.Views
             _viewModel.OnAppearing();
         }
 
-        protected void SwipeDelete_Invoked(object sender, EventArgs e)
+        protected async void SwipeDelete_Invoked(object sender, EventArgs e)
         {
             var swipe = sender as SwipeItem;
             var item = swipe.BindingContext as Movie;
             _viewModel.DataStore.Remove(item);
-            _viewModel.DataStore.SaveChanges();
+            await _viewModel.DataStore.SaveChangesAsync();
             _viewModel.Items.Remove(item);
             _viewModel.ExecuteLoadItemsCommand();
-            Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..");
 
         }
     }

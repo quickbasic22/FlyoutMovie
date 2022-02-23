@@ -6,13 +6,13 @@
    
     <StackLayout Spacing="20" Padding="15">
         <Label Text="Id:" FontSize="Medium" />
-        <Entry Text="{Binding Id}" FontSize="Medium"/>
+        <Label Text="{Binding Id}" FontSize="Medium"/>
         <Label Text="Title:" FontSize="Medium" />
         <Entry x:Name="TitleOfMovie" Text="{Binding MovieTitle}" FontSize="Medium"/>
         <Label Text="Imdb_Id:" FontSize="Medium" />
-        <DatePicker Date="{Binding Imdb_Id}" FontSize="Medium"/>
+        <Entry Text="{Binding Imdb_Id}" FontSize="Medium"/>
         <Label Text="Year:" FontSize="Medium" />
-        <Entry Text="{Binding Year, StringFormat='{0:N0}'}" FontSize="Medium"/>
+        <Entry Text="{Binding Year}" FontSize="Medium"/>
         <StackLayout>
             <Button Text="Save" Command="{Binding SaveCommand}" />
         </StackLayout>

@@ -1,21 +1,23 @@
 ﻿using FlyoutMovie.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
+using System.Linq;
+using System.Diagnostics;
+using System.Collections;
 
 namespace FlyoutMovie.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
-        private int id = 1;
-        private string title = "Movie";
-        private string imdb_id = "id2ds3se";
-        private int year = 2022;
+        private string title;
+        private string imdb_id;
+        private int year;
 
         public NewItemViewModel()
         {
+            MovieTitle = title;
+            Imdb_Id = imdb_id;
+            Year = year;
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
             this.PropertyChanged +=
@@ -26,12 +28,6 @@ namespace FlyoutMovie.ViewModels
         {
             return !String.IsNullOrWhiteSpace(title)
                 && !String.IsNullOrWhiteSpace(imdb_id);
-        }
-
-        public int Id
-        {
-            get => id;
-            set => SetProperty(ref id, value);
         }
 
         public string MovieTitle
@@ -63,15 +59,33 @@ namespace FlyoutMovie.ViewModels
 
         private async void OnSave()
         {
+            var list = DataStore.Movies.ToList().Last();
+            var lastId = list.Id++;
+            lastId = lastId++;
             Movie newItem = new Movie()
             {
+                Id = lastId,
                 Title = title,
                 Imdb_Id = imdb_id,
                 Year = year
             };
 
-            DataStore.Add(newItem);
-            DataStore.SaveChanges();
+            try
+            {
+                await DataStore.Movies.AddAsync(newItem);
+                await DataStore.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                Debug.WriteLine(ex.InnerException.ToString());
+                foreach (IDictionary dictionary in ex.Data)
+                {
+                    Debug.WriteLine(dictionary.Keys);
+                    Debug.WriteLine(dictionary.Values);
+                }
+            }
+            
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

@@ -1,8 +1,6 @@
 ﻿using FlyoutMovie.Models;
 using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace FlyoutMovie.ViewModels
@@ -27,16 +25,16 @@ namespace FlyoutMovie.ViewModels
                 (_, __) => SaveCommand.ChangeCanExecute();
         }
 
-        private void OnSave()
+        private async void OnSave()
         {
             Movie movieEditable = new Movie();
-            movieEditable.Id = this.Id;
+            movieEditable.Id = this.id;
             movieEditable.Title = this.title;
             movieEditable.Imdb_Id = this.imdb_id;
             movieEditable.Year = this.Year;
             DataStore.Update(movieEditable);
-            DataStore.SaveChanges();
-            Shell.Current.GoToAsync("..");
+            await DataStore.SaveChangesAsync();
+            await Shell.Current.GoToAsync("..");
         }
 
         public Movie MovieEdit
@@ -82,11 +80,11 @@ namespace FlyoutMovie.ViewModels
             }
         }
 
-        public void LoadItemId(int itemId)
+        public async void LoadItemId(int itemId)
         {
             try
             {
-                MovieEdit = DataStore.Movies.Find(itemId);
+                MovieEdit = await DataStore.Movies.FindAsync(itemId);
                 Id = MovieEdit.Id;
                 MovieTitle = MovieEdit.Title;
                 Imdb_Id = MovieEdit.Imdb_Id;

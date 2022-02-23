@@ -15,13 +15,13 @@ namespace DummyProject.Models
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; } = 1;
+        public int Id { get; set; }
         [MinLength(3), MaxLength(100)]
-        public string Title { get; set; } = "Movie Title";
+        public string Title { get; set; }
         [Range(1900, 2100, ErrorMessage = "Between 1900 and 2100")]
-        public int Year { get; set; } = DateTime.Now.Year;
+        public int Year { get; set; }
         [MinLength(9), MaxLength(18)]
-        public string Imdb_Id { get; set; } = "tt1974203";
+        public string Imdb_Id { get; set; }
         public ICollection<Director> Directors { get; set; }
         public ICollection<Genre> Genres { get; set; }
         public ICollection<Star> Stars { get; set; }
