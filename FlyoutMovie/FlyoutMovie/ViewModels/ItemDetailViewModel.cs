@@ -33,6 +33,8 @@ namespace FlyoutMovie.ViewModels
             MovieEdit.Year = Year;
             DataStore.Update<Movie>(MovieEdit);
             await DataStore.SaveChangesAsync();
+            Items.Remove(MovieEdit);
+            ExecuteLoadItemsCommand();
             await Shell.Current.GoToAsync("..");
         }
 
@@ -92,6 +94,29 @@ namespace FlyoutMovie.ViewModels
             catch (Exception)
             {
                 Debug.WriteLine("Failed to Load Movie");
+            }
+        }
+
+        public void ExecuteLoadItemsCommand()
+        {
+            IsBusy = true;
+
+            try
+            {
+                Items.Clear();
+                var items = DataStore.Movies
+                foreach (var movie in items)
+                {
+                    Items.Add(movie);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }
