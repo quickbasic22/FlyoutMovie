@@ -104,7 +104,7 @@ namespace FlyoutMovie.ViewModels
             try
             {
                 Items.Clear();
-                var items = DataStore.Movies
+                var items = DataStore.Movies;
                 foreach (var movie in items)
                 {
                     Items.Add(movie);
